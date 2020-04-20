@@ -1,7 +1,7 @@
 # Name the workflow
 name: ARM Tests
 on:
- push:
+ pull_request:
   branches:
     - master
 
