@@ -13,7 +13,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-     - name: Checkout
+    - name: Checkout
       uses: actions/checkout@v1
     
     - name: Azure CLI script
@@ -21,4 +21,4 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-         az group create --location westeurope --name rg-test
+          az group create --location westeurope --name rg-test
