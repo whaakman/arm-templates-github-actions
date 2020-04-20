@@ -1,5 +1,7 @@
-on: [push]
-
+on: 
+  push:
+    branches:
+      - master
 name: Deploy ARM Template
 
 env:
@@ -20,7 +22,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     
-    - name: Azure CLI magic
+    - name: Azure CLI Deploy ARM Template
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
