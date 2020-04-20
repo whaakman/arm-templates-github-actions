@@ -11,8 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Azure Resource Manager Template Toolkit
     steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Azure CLI magic
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+            az group create --location $LOCATION --name $RESOURCE_GROUP
+            az group deployment validate --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
+
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Run ARM TTK
         uses: ./.github/actions
         id: action
@@ -36,5 +50,4 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-          az group create --location $LOCATION --name $RESOURCE_GROUP
           az group deployment create --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
