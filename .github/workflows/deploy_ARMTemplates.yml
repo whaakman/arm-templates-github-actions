@@ -7,6 +7,15 @@ env:
   RESOURCE_GROUP: rg-test
 
 jobs:
+test_arm_templates:
+    runs-on: ubuntu-latest
+    name: Run ARM TTK
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run ARM TTK
+        uses: ./.github/actions
+        id: action
 
   deploy-arm-template:
     runs-on: ubuntu-latest
@@ -18,7 +27,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     
     - name: Azure CLI magic
       uses: azure/CLI@v1
