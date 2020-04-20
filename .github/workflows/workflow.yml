@@ -1,6 +1,6 @@
 on: [push]
 
-name: AzureCLISample
+name: Deploy ARM Template
 
 jobs:
 
@@ -12,11 +12,13 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+     - name: Checkout
+      uses: actions/checkout@v1
     
     - name: Azure CLI script
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
-          az account show
-          az storage -h
+         az group create --location westeurope --name rg-test
