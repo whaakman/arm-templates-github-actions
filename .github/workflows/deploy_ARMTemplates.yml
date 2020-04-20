@@ -9,7 +9,7 @@ env:
 jobs:
   test_arm_templates:
     runs-on: ubuntu-latest
-    name: Run ARM TTK
+    name: Run Azure Resource Manager Template Toolkit
     steps:
       - name: Checkout
         uses: actions/checkout@v2
