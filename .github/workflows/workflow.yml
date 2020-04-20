@@ -16,10 +16,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     
-    - name: Azure CLI script
+    - name: Azure CLI magic
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
           az group create --location westeurope --name rg-test
-          az deployment create --resource-group rg-test --template-file $GITHUB_WORKSPACE/azuredeploy.json --location westeurope
+          az group deployment create --resource-group rg-test --template-file $GITHUB_WORKSPACE/azuredeploy.json --location westeurope
