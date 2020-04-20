@@ -1,9 +1,10 @@
 on: [push]
 
 name: Deploy ARM Template
-  env:
-    location: westeurope
-    resourcegroup: rg-test
+
+env:
+  location: westeurope
+  resourcegroup: rg-test
 
 jobs:
 
