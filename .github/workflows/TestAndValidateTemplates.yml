@@ -1,4 +1,7 @@
-on: [push]
+on: 
+  pull_request:
+    branches:
+      - master
 
 name: Deploy ARM Template
 
@@ -9,7 +12,7 @@ env:
 jobs:
   test_arm_templates:
     runs-on: ubuntu-latest
-    name: Run Azure Resource Manager Template Toolkit
+    name: Test deployment and Run Azure Resource Manager Template Toolkit
     steps:
       - name: Azure Login
         uses: azure/login@v1
@@ -30,24 +33,3 @@ jobs:
       - name: Run ARM TTK
         uses: ./.github/actions
         id: action
-
-  deploy-arm-template:
-    needs: test_arm_templates
-    runs-on: ubuntu-latest
-    name: Deploy ARM Template
-    steps:
-    
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Checkout
-      uses: actions/checkout@v2
-    
-    - name: Azure CLI magic
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |
-          az group deployment create --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
