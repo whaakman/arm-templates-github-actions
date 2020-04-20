@@ -15,6 +15,9 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      -name: Checkout
+        uses: actions/checkout@v2
 
       - name: Azure CLI magic
         uses: azure/CLI@v1
@@ -23,9 +26,6 @@ jobs:
           inlineScript: |
             az group create --location $LOCATION --name $RESOURCE_GROUP
             az group deployment validate --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
-
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Run ARM TTK
         uses: ./.github/actions
