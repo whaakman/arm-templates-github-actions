@@ -1,6 +1,9 @@
 on: [push]
 
 name: Deploy ARM Template
+  env:
+    location: westeurope
+    resourcegroup: rg-test
 
 jobs:
 
@@ -21,5 +24,5 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-          az group create --location westeurope --name rg-test
-          az group deployment create --resource-group rg-test --template-file $GITHUB_WORKSPACE/azuredeploy.json
+          az group create --location $location --name $resourcegroup
+          az group deployment create --resource-group $resourcegroup --template-file $GITHUB_WORKSPACE/azuredeploy.json
