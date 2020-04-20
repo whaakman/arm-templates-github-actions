@@ -19,6 +19,7 @@ jobs:
 
   deploy-arm-template:
     runs-on: ubuntu-latest
+    name: Deploy ARM Template
     steps:
     
     - name: Azure Login
