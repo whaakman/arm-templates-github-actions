@@ -24,7 +24,7 @@ jobs:
         with:
           ref: 'dev1'
 
-      - name: Azure CLI magic
+      - name: Azure CLI Validate Deployment
         uses: azure/CLI@v1
         with:
           azcliversion: 2.0.72
@@ -32,6 +32,6 @@ jobs:
             az group create --location $LOCATION --name $RESOURCE_GROUP
             az group deployment validate --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
 
-      - name: Run ARM TTK
+      - name: Run Azure Resource Manager Template Toolkit
         uses: ./.github/actions
         id: action
