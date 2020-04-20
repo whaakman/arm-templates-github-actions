@@ -6,6 +6,7 @@ env:
   LOCATION: westeurope
   RESOURCE_GROUP: rg-test
 
+jobs:
   deploy-arm-template:
     needs: test_arm_templates
     runs-on: ubuntu-latest
