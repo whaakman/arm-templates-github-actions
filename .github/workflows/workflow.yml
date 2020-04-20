@@ -22,3 +22,4 @@ jobs:
         azcliversion: 2.0.72
         inlineScript: |
           az group create --location westeurope --name rg-test
+          az deployment group create --resource-group rg-test --template-file $GITHUB_WORKSPACE/azuredeploy.json
