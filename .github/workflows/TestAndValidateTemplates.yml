@@ -21,6 +21,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: 'dev1'
 
       - name: Azure CLI magic
         uses: azure/CLI@v1
