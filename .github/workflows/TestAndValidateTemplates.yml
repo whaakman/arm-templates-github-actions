@@ -7,7 +7,7 @@ name: Test and Validate ARM Templates
 
 env:
   LOCATION: westeurope
-  RESOURCE_GROUP: rg-test
+  RESOURCE_GROUP_TEST: rg-validation
 
 jobs:
   test_arm_templates:
@@ -29,8 +29,9 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-            az group create --location $LOCATION --name $RESOURCE_GROUP
-            az group deployment validate --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
+            az group create --location $LOCATION --name $RESOURCE_GROUP_TEST
+            az group deployment validate --resource-group $RESOURCE_GROUP_TEST --template-file $GITHUB_WORKSPACE/azuredeploy.json
+            az group delete --resource-group $RESOURCE_GROUP_TEST --yes --no-wait 
 
       - name: Run Azure Resource Manager Template Toolkit
         uses: ./.github/actions
