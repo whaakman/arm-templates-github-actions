@@ -27,4 +27,5 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
+          az group create --location $LOCATION --name $RESOURCE_GROUP
           az group deployment create --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
