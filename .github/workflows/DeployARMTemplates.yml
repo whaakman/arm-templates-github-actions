@@ -6,7 +6,7 @@ name: Deploy ARM Template
 
 env:
   LOCATION: westeurope
-  RESOURCE_GROUP: rg-test
+  RESOURCE_GROUP: rg-production-action
 
 jobs:
   deploy-arm-template:
