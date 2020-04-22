@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: 'dev1'
 
       - name: Azure CLI Validate Deployment
         uses: azure/CLI@v1
